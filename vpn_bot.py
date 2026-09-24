@@ -4,16 +4,12 @@ import subprocess
 import requests
 
 # ==================== НАСТРОЙКИ ====================
-# 1. Вставь сюда токен, который тебе дал @BotFather
 TOKEN = "8900895010:AAEnNW4mIGzIv3AQqKkgbSM-cn1bzkLK8RI"
 
-# 2. Вставь сюда свой цифровой ID из @userinfobot
 CHAT_ID = "5057125017"
 
-# 3. IP-адрес твоего VPN-сервера Hysteria 2 (без порта)
 SERVER_IP = "85.155.124.78"  
 
-# 4. Как часто проверять сервер (в секундах)
 CHECK_INTERVAL = 30         
 # ===================================================
 
@@ -36,7 +32,7 @@ def send_telegram_message(text):
 
 def ping_server(ip):
     """Проверяет, пингуется ли твой VPN-сервер."""
-    # Отправляем 2 пакета пинга. stdout убирает лишний мусор из консоли.
+    
     result = subprocess.run(["ping", "-c", "2", ip], stdout=subprocess.DEVNULL)
     return result.returncode == 0
 
@@ -61,10 +57,9 @@ def get_free_mem():
 
 
 if __name__ == "__main__":
-    # Сбор телеметрии памяти
+
     mem_status = get_free_mem()
     
-    # Сборка финального лога (обрати внимание на 'f' в начале)
     start_log = f"`[INFO] vpn_monitor daemon started.\n[SYS] {mem_status}\n[NET] Hysteria 2 tracking active.`"
     send_telegram_message(start_log)
     
@@ -75,7 +70,6 @@ if __name__ == "__main__":
 
             print(f"[*] Проверил сервер. Результат онлайна: {is_online}")
             
-            # Если сервер только что упал
             if not is_online and was_online:
                 print(f"[-] CRITICAL: Host {SERVER_IP} down.")
                 
@@ -83,7 +77,6 @@ if __name__ == "__main__":
                 
                 was_online = False
                 
-            # Если сервер лежал, но снова поднялся
             elif is_online and not was_online:
                 print(f"[+] NOTICE: Host {SERVER_IP} up.")
  
@@ -91,7 +84,6 @@ if __name__ == "__main__":
 
                 was_online = True
             
-            # Спим перед следующей проверкой
             time.sleep(CHECK_INTERVAL)
             
     except KeyboardInterrupt:
