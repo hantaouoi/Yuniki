@@ -2,8 +2,6 @@ import os
 import time
 import subprocess
 import requests
-
-# ==================== НАСТРОЙКИ ====================
 TOKEN = "8900895010:AAEnNW4mIGzIv3AQqKkgbSM-cn1bzkLK8RI"
 
 CHAT_ID = "5057125017"
@@ -11,10 +9,8 @@ CHAT_ID = "5057125017"
 SERVER_IP = "85.155.124.78"  
 
 CHECK_INTERVAL = 30         
-# ===================================================
 
 def send_telegram_message(text):
-    """Отправляет сообщение в твой Telegram."""
     url = f"https://api.telegram.org/bot{TOKEN}/sendMessage"
     payload = {
         "chat_id": CHAT_ID,
@@ -31,13 +27,10 @@ def send_telegram_message(text):
         print(f"[-] Ошибка сети при отправке: {e}")
 
 def ping_server(ip):
-    """Проверяет, пингуется ли твой VPN-сервер."""
-    
     result = subprocess.run(["ping", "-c", "2", ip], stdout=subprocess.DEVNULL)
     return result.returncode == 0
 
 def get_free_mem():
-    """Считывает данные о памяти напрямую из ядра Linux."""
     try:
         with open("/proc/meminfo", "r") as f:
             lines = f.readlines()
@@ -57,7 +50,6 @@ def get_free_mem():
 
 
 if __name__ == "__main__":
-
     mem_status = get_free_mem()
     
     start_log = f"`[INFO] vpn_monitor daemon started.\n[SYS] {mem_status}\n[NET] Hysteria 2 tracking active.`"
