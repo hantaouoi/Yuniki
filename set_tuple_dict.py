@@ -29,11 +29,6 @@
 
 
 
-
-
-
-
-
 text = input("Введите текст:")
 
 words = text.split()
