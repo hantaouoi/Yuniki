@@ -58,7 +58,7 @@ if __name__ == "__main__":
     was_online = True
     try:
         while True:
-            is_online = ping_server("85.155.124.78")
+            is_online = ping_server(SERVER_IP)
 
             print(f"[*] Проверил сервер. Результат онлайна: {is_online}")
             
