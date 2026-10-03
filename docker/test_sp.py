@@ -8,5 +8,5 @@ def ping_server(ip):
     return return_code
 
 for test_ip in SERVER_IP:
-    print(f"[*] Проверяю сервер: {test_ip}")
+    print(f"[*] Проверка сервера: {test_ip}")
     is_online = ping_server(test_ip)
