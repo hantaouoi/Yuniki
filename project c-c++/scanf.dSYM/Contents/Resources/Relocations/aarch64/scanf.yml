@@ -1,0 +1,5 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     '/Users/anastasia/Yuniki/project c-c++/scanf'
+relocations:     []
+...
