@@ -1,17 +1,20 @@
-#include <stdio.h>
+//не закончина нету вывода только считает макс число 
+int accounts[] = {5,2,6,8};
+int main (void){
+int maximumWealth(int** accounts, int accountSize, int* accountColSize){
+	int maxWealth = 0;
 
-int main(void)
-{
-	int n;
-	{
-		printf("Введите число студентов: ");
+	for(int i = 0; i < accountSize;i++){
+		int sum  = 0;
+		
+		for (int j = 0;j < accountColSize[i]; i++){
+			sum = sum +accounts[i][i];
 	}
-	scanf("%d",&n);
-	int age[n];
 
-	for (int i = 0; i < n;i++)
-	{
-		age[i] = scanf("%d",&i);
+	if (sum > maxWealth){
+		maxWealth = sum;
 	}
-	printf("%s\n", names[i]);
+	}
+	return maxWealth;
+}
 }

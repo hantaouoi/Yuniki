@@ -1,3 +1,4 @@
+//first proggram
 #include <stdio.h>
 
 int main(void)
